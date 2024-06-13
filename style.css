@@ -1,19 +1,27 @@
 body {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Courier New", Courier, monospace;
 }
 
-.calculatorFrame {
-  height: 50vh;
-  width: 33vh;
+.calcFrame {
+  width: 29vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40%;
   background-color: rgb(170, 170, 170);
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px;
+}
+
+.calcDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .currentNumDisplay,
@@ -21,37 +29,48 @@ body {
   background-color: white;
   text-align: right;
   margin: 0px;
-  padding: 3px;
+  padding: 10px;
+  font-size: 1.5em;
 }
 
 .resultDisplay {
+  width: 100%;
   background-color: white;
-  padding: 10px;
-  border: solid black;
-  border-radius: 3px;
+
+  border: solid white;
+  border-radius: 6px;
+  box-shadow: 2px 5px 5px rgb(7, 56, 171);
+  margin-bottom: 5px;
 }
 
 .prevNumDisplay {
+  font-size: 1.2em;
   color: rgb(140, 140, 140);
   border-bottom: solid rgb(232, 232, 232);
 }
 
-.buttons {
-  height: 40vh;
-  width: 25vh;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin-top: 5px;
 }
 
 button {
-  width: 50px;
-  height: 50px;
-  margin: 2px;
-  flex-grow: 1;
+  width: 100%;
+  padding: 20px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px rgb(7, 56, 171);
 }
 
 .clearBtn,
 .deleteBtn {
-  flex-grow: 4;
+  grid-column: span 2;
+}
+
+button:hover {
+  background-color: rgb(49, 28, 237);
+  color: white;
 }
