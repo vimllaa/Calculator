@@ -5,8 +5,8 @@ body {
 }
 
 .calculatorFrame {
-  height: 40vh;
-  width: 25vh;
+  height: 50vh;
+  width: 33vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,11 +16,30 @@ body {
   padding: 10px;
 }
 
+.currentNumDisplay,
+.prevNumDisplay {
+  background-color: white;
+  text-align: right;
+  margin: 0px;
+  padding: 3px;
+}
+
+.resultDisplay {
+  background-color: white;
+  padding: 10px;
+  border: solid black;
+  border-radius: 3px;
+}
+
+.prevNumDisplay {
+  color: rgb(140, 140, 140);
+  border-bottom: solid rgb(232, 232, 232);
+}
+
 .buttons {
   height: 40vh;
   width: 25vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
