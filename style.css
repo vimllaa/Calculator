@@ -24,7 +24,7 @@ body {
   flex-direction: column;
 }
 
-.currentNumDisplay,
+.numDisplay,
 .prevNumDisplay {
   background-color: white;
   text-align: right;
@@ -72,5 +72,5 @@ button {
 
 button:hover {
   background-color: rgb(49, 28, 237);
-  color: white;
+  color: blue;
 }
