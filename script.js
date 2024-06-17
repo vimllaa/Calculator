@@ -101,3 +101,18 @@ function operate(a, b, op) {
       return null;
   }
 }
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key;
+  if (key >= "0" && key <= "9") {
+    handleButtonClick(key);
+  } else if (["+", "-", "*", "/"].includes(key)) {
+    handleButtonClick(key);
+  } else if (key === "Enter") {
+    handleButtonClick("=");
+  } else if (key === "Backspace") {
+    handleButtonClick("delete");
+  } else if (key === "Escape") {
+    handleButtonClick("clear");
+  }
+});
