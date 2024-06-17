@@ -1,77 +1,99 @@
 const displayValue = document.getElementById("numValue");
 const prevNumDisplay = document.getElementById("prevNumValue");
-const btnClear = document.getElementById("clear");
-const btnDelete = document.getElementById("delete");
-const btnDivide = document.getElementById("btnDivide");
-const btnMultiply = document.getElementById("btnDivide");
-const btnSubtract = document.getElementById("btnSubtract");
-const btnSum = document.getElementById("btnSum");
-const btnAdd = document.getElementById("btnAdd");
 
-let displayValues;
-
-let divide = (a, b) => a / b;
-let multiply = (a, b) => a * b;
-let subtract = (a, b) => a - b;
-let add = (a, b) => parseFloat(a) + parseFloat(b);
+const divide = (a, b) => a / b;
+const multiply = (a, b) => a * b;
+const subtract = (a, b) => a - b;
+const add = (a, b) => parseFloat(a) + parseFloat(b);
 
 let firstNum = "";
 let secondNum = "";
 let operator = "";
-let calculation = [];
 
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    let clickedValue = button.dataset.value;
-    let numList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
-    if (numList.includes(clickedValue)) {
-      if (operator === "") {
-        firstNum += clickedValue;
-        displayValue.textContent = firstNum;
-      } else {
-        console.log("hrlo");
-        secondNum += clickedValue;
-        displayValue.textContent = secondNum;
-      }
-    } else if (clickedValue === "=") {
-      console.log("firstnum: " + firstNum + "Second: " + secondNum, operator);
-      let result = operate(firstNum, secondNum, operator);
-      displayValue.textContent = result;
-      prevNumDisplay.textContent = `${firstNum} ${operator} ${secondNum} = ${result}`;
-      firstNum = result;
-      secondNum = "";
-      operator = "";
-    } else {
-      operator = clickedValue;
-      prevNumDisplay.textContent = firstNum + operator;
-    }
-    console.log("First number: " + firstNum + "second Number: " + secondNum);
+    handleButtonClick(button.dataset.value);
   });
 });
 
-function operate(firstNum, secondNum, operator) {
-  if (operator == "+") {
-    return add(firstNum, secondNum);
-  } else if (operator == "-") {
-    return subtract(firstNum, secondNum);
-  } else if (operator == "*") {
-    return multiply(firstNum, secondNum);
-  } else if (operator == "/") {
-    return divide(firstNum, secondNum);
+function handleButtonClick(value) {
+  const numList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  if (numList.includes(value)) {
+    handleNumber(value);
+  } else {
+    handleOperator(value);
   }
 }
 
-btnSum.addEventListener("click", () => {
-  displayValue.textContent = firstNum;
-});
+function handleNumber(value) {
+  if (operator === "") {
+    firstNum += value;
+    displayValue.textContent = firstNum;
+  } else {
+    secondNum += value;
+    displayValue.textContent = secondNum;
+  }
+}
 
-btnClear.addEventListener("click", () => {
+function handleOperator(value) {
+  switch (value) {
+    case "=":
+      handleEqual();
+      break;
+    case "delete":
+      handleDelete();
+      break;
+    case "clear":
+      handleClear();
+      break;
+    default:
+      operator = value;
+      prevNumDisplay.textContent = `${firstNum} ${operator}`;
+  }
+}
+
+function handleEqual() {
+  const result = operate(firstNum, secondNum, operator);
+  prevNumDisplay.textContent = `${firstNum} ${operator} ${secondNum} = ${result}`;
+  displayValue.textContent = result;
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+}
+
+function handleDelete() {
+  if (operator === "") {
+    firstNum = firstNum.slice(0, -1);
+    displayValue.textContent = firstNum;
+  } else {
+    secondNum = secondNum.slice(0, -1);
+    displayValue.textContent = secondNum;
+  }
+}
+
+function handleClear() {
   displayValue.textContent = "";
   prevNumDisplay.textContent = "";
   firstNum = "";
   secondNum = "";
   operator = "";
-});
+}
+
+function operate(a, b, op) {
+  const num1 = parseFloat(a);
+  const num2 = parseFloat(b);
+  switch (op) {
+    case "+":
+      return add(num1, num2);
+    case "-":
+      return subtract(num1, num2);
+    case "*":
+      return multiply(num1, num2);
+    case "/":
+      return divide(num1, num2);
+    default:
+      return null;
+  }
+}

@@ -31,6 +31,7 @@ body {
   margin: 0px;
   padding: 10px;
   font-size: 1.5em;
+  height: 25px;
 }
 
 .resultDisplay {
@@ -45,6 +46,7 @@ body {
 
 .prevNumDisplay {
   font-size: 1.2em;
+  height: 15px;
   color: rgb(140, 140, 140);
   border-bottom: solid rgb(232, 232, 232);
 }
