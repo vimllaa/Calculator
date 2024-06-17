@@ -55,12 +55,16 @@ function handleOperator(value) {
 }
 
 function handleEqual() {
-  const result = operate(firstNum, secondNum, operator);
-  prevNumDisplay.textContent = `${firstNum} ${operator} ${secondNum} = ${result}`;
-  displayValue.textContent = result;
-  firstNum = "";
-  secondNum = "";
-  operator = "";
+  if (secondNum === "") {
+    prevNumDisplay.textContent = "Sum not possible yet";
+  } else {
+    const result = operate(firstNum, secondNum, operator);
+    prevNumDisplay.textContent = `${firstNum} ${operator} ${secondNum} = ${result}`;
+    displayValue.textContent = result;
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+  }
 }
 
 function handleDelete() {
